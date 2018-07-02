@@ -74,6 +74,7 @@ Practical exams:
 Practical exams:
 
 - You got a deployment. Scale it.
+- Understanding 12 factors application
 
 ## Evaluation
 
