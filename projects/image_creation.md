@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Image creation subject
 
 - Create a Image for a particular application
