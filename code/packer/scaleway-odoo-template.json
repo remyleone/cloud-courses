@@ -1,0 +1,31 @@
+{
+  "variables": {
+    "api_access_key": "",
+    "api_token": ""
+  },
+  "builders": [
+    {
+      "api_access_key": "{{ user `api_access_key` }}",
+      "api_token": "{{ user `api_token` }}",
+      "server_name": "odoo",
+      "image_name": "odoo-image",
+      "snapshot_name": "odoo-snapshot",
+      "type": "scaleway",
+      "image": "dec0cdd6-3ef5-47cf-a777-54a21f732b02",
+      "region": "par1",
+      "commercial_type": "START1-S",
+      "ssh_private_key_file": "/Users/sieben/.ssh/id_rsa",
+      "ssh_username": "root"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "ubuntu_install.sh"
+    },
+    {
+      "type": "shell",
+      "inline": ["sync"]
+    }
+  ]
+}
