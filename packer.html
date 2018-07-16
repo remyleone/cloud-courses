@@ -4,18 +4,33 @@ layout: presentation
 
 # Packer
 
+![Default-aligned image](/img/packer_logo.png)
+
+Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
+
 ---
 
 # Problem it solves
 
-- How can I create a cloud image that is packaged with everything my application need?
+- How can I create a cloud image that is production ready?
+
+  `packer build my-template.json`
 
 ---
 
 # How it works
 
+- It creates an instance on Scaleway (`builder`)
+- You run commands to install your application (`provisionner`)
+- You snapshot your instance
+- Your image is ready to be used
+
 ---
 
 # Demo
 
----
+```
+packer build -var "api_access_key=$SCW_ACCESS_KEY"
+             -var "api_token=$SCW_TOKEN"
+             scaleway-odoo-template.json
+```

@@ -26,3 +26,5 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 ## Projects
 
 - [Projects](projects)
+
+Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
