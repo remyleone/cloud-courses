@@ -24,7 +24,62 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 # How does it works?
 
-1. You declare
+1. You declare your infrastructure. (Desired state)
+1. You run `terraform plan` to see what terraform will do without actually doing it
+1. You run `terraform apply` to make it happen
+
+---
+
+# Provider
+
+```
+A provider in Terraform is responsible for the lifecycle of a resource:
+  - create
+  - read
+  - update
+  - delete
+```
+
+Each vendor is going to support its own provider
+
+---
+
+# Provisionner
+
+Provisioners are used to execute scripts on a local or remote machine as part of resource creation or destruction.
+
+- [chef](https://www.terraform.io/docs/provisioners/chef.html)
+- [salt](https://www.terraform.io/docs/provisioners/salt-masterless.html)
+- [local-exec](https://www.terraform.io/docs/provisioners/local-exec.html)
+- [remote-exec](https://www.terraform.io/docs/provisioners/remote-exec.html)
+
+---
+
+# Terraform state
+
+- Where terraform store all the known state of your infrastructure.
+- Used to gather what exists to compute the diff of what needs to happen to reach the desired state
+
+Beware: Multiple users modifying it in the same time.
+
+Beware: If you delete it, terraform will recreate all your resources.
+
+---
+
+# Import
+
+Problem: I already got infrastructure that is defined.
+How can I manage it with terraform?
+
+`$ terraform import scaleway_server.foobar 7b8f6ad6-f26b-4ffa-8464-e27fe22d40d4`
+
+```
+resource "scaleway_server" "foobar" {
+  name  = "foobar"
+  image = "857de28c-39ce-4b15-9389-b68d8bb1bb51"
+  type  = "VC1S"
+}
+```
 
 ---
 

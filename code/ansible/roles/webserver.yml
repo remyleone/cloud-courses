@@ -1,0 +1,54 @@
+---
+- name: bonjour
+  hosts: par1
+  tasks:
+
+  - name: Install system-wide dependencies
+    apt:
+      name: [
+         nginx,
+         git,
+         mcrypt,
+         nginx,
+         php-cli,
+         php-curl,
+         php-fpm,
+         php-intl,
+         php-json,
+         php-mbstring,
+         php-sqlite3,
+         php-xml,
+         sqlite3,
+         unzip
+      ]
+      state: present
+      update_cache: yes
+
+  - name: Run the composer installation script
+    script: composer_install.sh
+
+  - name: Fetch sources
+    get_url:
+      url: https://github.com/symfony/demo/archive/master.zip
+      dest: /root/demo.zip
+
+  - name: Creates directory
+    file:
+      path: /var/www/project/public
+      state: directory
+
+  - name: Unarchive sources
+    unarchive:
+      src: /root/demo.zip
+      remote_src: yes
+      dest: /var/www/project/public/.
+
+  - name: Copy the nginx configuration
+    copy:
+      src: nginx.conf
+      dest: /etc/nginx/sites-available/default
+
+  - name: Reload service httpd, in all cases
+    service:
+      name: nginx
+      state: reloaded
