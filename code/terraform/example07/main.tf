@@ -15,7 +15,7 @@ data "scaleway_image" "par" {
 data "scaleway_image" "ams" {
   architecture = "x86_64"
   name         = "Ubuntu Bionic"
-  provider = "scaleway.amsterdam"
+  provider     = "scaleway.amsterdam"
 }
 
 resource "scaleway_server" "example07_par" {
@@ -29,6 +29,6 @@ resource "scaleway_server" "example07_ams" {
   name     = "example07-amsterdam"
   image    = "${data.scaleway_image.ams.id}"
   type     = "C2S"
-  state = "stopped"
+  state    = "stopped"
   provider = "scaleway.amsterdam"
 }
