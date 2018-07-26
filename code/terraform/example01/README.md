@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /code/terraform/example01/
 ---
 
 Basic example
