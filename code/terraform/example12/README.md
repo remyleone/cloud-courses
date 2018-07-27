@@ -1,8 +1,17 @@
 ---
 layout: default
+permalink: /code/terraform/example12
 ---
 
 This example requires having a consul running locally
+
+## Code
+
+{% highlight terraform %}
+{% include_relative user_a/main.tf %}
+{% endhighlight %}
+
+## How to use?
 
 	$ consul agent -dev -ui
 

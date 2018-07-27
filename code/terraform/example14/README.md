@@ -1,8 +1,17 @@
 ---
 layout: default
+permalink: /code/terraform/example14
 ---
 
 Example using workspace
+
+## Code
+
+{% highlight terraform %}
+{% include_relative main.tf %}
+{% endhighlight %}
+
+## How to use?
 
     terraform init
     terraform plan
