@@ -24,9 +24,72 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 # How does it works?
 
-1. You declare your infrastructure. (Desired state)
+1. You declare your infrastructure as a set of resources. (Desired state)
 1. You run `terraform plan` to see what terraform will do without actually doing it
 1. You run `terraform apply` to make it happen
+
+???
+
+
+---
+
+# Resources
+
+- Resources are components of your infrastructure
+- Can be low or high level
+- They take a set of arguments (required or optional)
+- Exported attributes (like returned values)
+
+---
+
+# Interpolation syntax
+
+- Way of evaluating an expression when terraform will run
+- Helps Terraform to work out the dependency order of creation
+- Makes refactoring easier
+
+`"${<resource_type>.<resource_name>.<exported_attribute>}"`
+
+---
+
+```
+resource "scaleway_server" "test" {
+  name  = "test"
+  image = "aecaed73-51a5-4439-a127-6d8229847145"
+  type  = "C2S"
+}
+```
+
+
+```
+"${scaleway_server.test.image}"
+```
+
+???
+
+You can have data source that allows you to check if you have correctly defined
+a resource
+
+---
+
+Locals
+
+`"${<local>.<variable_name>}"`
+
+---
+
+output
+
+Useful to return useful information
+
+---
+
+# Data Types
+
+- Int
+- String
+- List
+- Boolean
 
 ---
 
@@ -40,7 +103,23 @@ A provider in Terraform is responsible for the lifecycle of a resource:
   - delete
 ```
 
-Each vendor is going to support its own provider
+Each vendor is going to support its own provider.
+You can have mutiple cloud in a single project.
+You can have multiple regions by using different provider
+
+???
+
+You can define aliases on the provider.
+This allows you to duplicate infrastructure easily by using the aliases
+
+---
+
+Project layout
+
+Terraform only looks in your current directory.
+Not below nor above.
+
+It combines all files that end in `.tf` into one.
 
 ---
 
@@ -64,6 +143,34 @@ Beware: Multiple users modifying it in the same time.
 
 Beware: If you delete it, terraform will recreate all your resources.
 
+???
+
+By default stored locally
+Can be stored remotly
+
+You can use terraform state rm <resource_command>
+
+---
+
+terraform plan
+conceive all the change that need to happen.
+
+Apply is a multi-stage command
+
+4 actions can be done:
+
+- create
+- change
+- change with force recreate
+- destroy
+
+---
+
++ create
+- destroy
+~ change
+-/+ create with force recreate
+
 ---
 
 # Import
@@ -80,9 +187,44 @@ resource "scaleway_server" "foobar" {
   type  = "VC1S"
 }
 ```
+---
+
+Terraform workspaces
+
+- Copy of an infrastructure/state
+- Every terraform has at least one workspace (default)
+- terraform workspace new <name>
+- terraform workspace list
+- to switch terraform workspace select <name>
+- terraform workspace delete <name>
+
+
+"${terraform.workspace}"
+
+---
+
+Resource meta parameters
+
+- count
+- depends_on
+- provider
+- lifecycle
+
+???
+
+- ${count.index}
+- force the dependency resolution
+- multiple provider/zone
+- lifecycle: `create_before_destroy`, `prevent_destroy`, `ignore_changes`
+
 
 ---
 
 # Demo
+
+- Be sure to run the checker that will tell if your envirnoment is ready
+- `terraform init`
+- `terraform plan`
+- `terraform apply`
 
 ---

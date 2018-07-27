@@ -21,6 +21,14 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 ---
 
+idempotency
+
+---
+
+agentless
+
+---
+
 # Why do I need it?
 
 ???
@@ -30,6 +38,27 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 ---
 
 Inventory
+
+Example with ini
+
+---
+
+modules
+
+Don't use only the module shell
+
+Cloud: Scaleway, Amazon, Cloudstack, Openstack, VMWare, Digital Ocean
+Clustering: Consul, zookeeper
+Commands: Shell, script, expect
+Database: mysql, postgresql, redis, riak
+Files: copy, fetch, lineinfile, template, unarchive
+Messaging: rabbitmq_[binding, exchange, queue, ...]
+Monitoring: zabbix, nagios, sensu, monit
+Network: A10, F5, Openswitch, cumulus, get_url
+Notification: Jabber, slack, mail, irc, hipchat
+Packaging: apt, yum, pip, bower, npm, homebrew
+Source control: git, gitlab, hg, subversion
+system: known_host, authorized_key, user, group
 
 ---
 
@@ -48,6 +77,26 @@ Inventory
 
 # roles
 
+	ansible-galaxy init mon_role
+
+	.
+	├── README.md
+	├── defaults
+	│   └── main.yml
+	├── files
+	├── handlers
+	│   └── main.yml
+	├── meta
+	│   └── main.yml
+	├── tasks
+	│   └── main.yml
+	├── templates
+	├── tests
+	│   ├── inventory
+	│   └── test.yml
+	└── vars
+	    └── main.yml
+
 ---
 
 # Dynamic inventory
@@ -60,6 +109,8 @@ Problem:
 ---
 
 # Ansible galaxy
+
+Problem: How to reuse content that is generic through deployment?
 
 ---
 

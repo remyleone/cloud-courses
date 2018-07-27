@@ -8,8 +8,17 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 ---
 
-- Problem: Slow console, Reproductibility, ...
+Problem:
+    - Slow console
+    - error prone
+    - reproductibility (How to make a copy of your infrastructure?)
+    - Up to date picture of what is deployed
+    - No written description of what your infrastructure is like
+
+---
+
 - Solution: Deploy infrastructure as code.
+  - Define your infratructure as machine readable
   - Use the same tools: git, editor, ...
 
 Practical exams:
@@ -25,5 +34,15 @@ Practical exams:
 ---
 
 # Terraform
+
+- Tool for building, changing and versionning infrastructure
+- Make the infrastructure you defined appear
+- Evertime you create an environment it will be exactly the same
+
+- Large community, strong code quality, up to date providers
+- Provider model: Consistant way of declaring resources on many clouds
+- Plan before applying a change
+- Destroy infrastructure once you are done
+- Import existing infrastructure
 
 ---
