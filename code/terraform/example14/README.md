@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example14
 ---
 
-Example using workspace
+Example using [workspaces](https://www.terraform.io/docs/state/workspaces.html)
 
 ## Code
 

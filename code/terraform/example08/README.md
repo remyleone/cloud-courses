@@ -3,6 +3,8 @@ layout: default
 permalink: /code/terraform/example08
 ---
 
+Example using [variables](https://www.terraform.io/docs/configuration/variables.html)
+
 ## Code
 
 {% highlight terraform %}
@@ -10,3 +12,8 @@ permalink: /code/terraform/example08
 {% endhighlight %}
 
 ## How to use?
+
+    terraform init
+    terraform plan
+    terraform apply
+    terraform destroy

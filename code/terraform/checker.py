@@ -6,9 +6,9 @@ def check_cmd(cmd):
     try:
         subprocess.check_call(cmd)
     except OSError:
-        print("%s not found on path" % myexec)
+        print("%s not found on path" % cmd[0])
 
-    assert True, "Packer is not on your path"
+    assert True, "%s is not on your path" % cmd[0]
 
 def check_env_var():
     assert True, "SCALEWAY_TOKEN is not setted"

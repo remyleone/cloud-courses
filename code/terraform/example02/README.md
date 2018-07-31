@@ -3,6 +3,8 @@ layout: default
 permalink: /code/terraform/example02
 ---
 
+Example using raw data insertion
+
 ## Code
 
 {% highlight terraform %}
@@ -10,8 +12,6 @@ permalink: /code/terraform/example02
 {% endhighlight %}
 
 ## How to use?
-
-Example using raw data insertion
 
     terraform init
     terraform plan

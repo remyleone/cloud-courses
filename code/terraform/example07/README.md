@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example07
 ---
 
-Example using different providers
+Example using [different providers](https://www.terraform.io/docs/providers/index.html)
 
 ## Code
 

@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example04
 ---
 
-Example using locals variables
+Example using [locals variables](https://www.terraform.io/docs/configuration/locals.html)
 
 ## Code
 

@@ -5,6 +5,9 @@ permalink: /code/terraform/example01
 
 # Example 01
 
+Basic example using [resources](https://www.terraform.io/docs/configuration/resources.html)
+
+
 ## Code
 
 {% highlight terraform %}
@@ -12,8 +15,6 @@ permalink: /code/terraform/example01
 {% endhighlight %}
 
 ## How to use?
-
-Basic example
 
     terraform init
     terraform plan

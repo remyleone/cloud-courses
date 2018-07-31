@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example15
 ---
 
-Example using counters, index and depends_on
+Example using [counters, index and depends_on](https://www.terraform.io/docs/configuration/resources.html)
 
 ## Code
 

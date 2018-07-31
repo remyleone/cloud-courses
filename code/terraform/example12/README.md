@@ -3,6 +3,8 @@ layout: default
 permalink: /code/terraform/example12
 ---
 
+Example using [remote state](https://www.terraform.io/docs/state/remote.html).
+
 This example requires having a consul running locally
 
 ## Code

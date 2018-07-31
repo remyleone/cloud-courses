@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example05
 ---
 
-Example using output resources
+Example using [output resources](https://www.terraform.io/docs/commands/output.html)
 
 ## Code
 

@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example13
 ---
 
-Example using import
+Example using [import](https://www.terraform.io/docs/import/index.html).
 
 ## Code
 

@@ -3,7 +3,7 @@ layout: default
 permalink: /code/terraform/example03
 ---
 
-Example using data resources
+Example using [data resources](https://www.terraform.io/docs/configuration/data-sources.html)
 
 ## Code
 
