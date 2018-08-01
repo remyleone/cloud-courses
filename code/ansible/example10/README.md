@@ -37,19 +37,20 @@ defaults
     timeout server 50000ms
 
 listen cluster
-    bind {{ ansible_eth1['ipv4']['address'] }}:80
+    bind {{ ansible_default_ipv4.address }}:80
     mode http
     stats enable
     balance roundrobin
-{% for backend in groups['web'] %}
-    server {{ hostvars[backend]['ansible_hostname'] }} {{ hostvars[backend]['ansible_eth1']['ipv4']['address'] }} check port 80
-{% endfor %}
+    {% for backend in groups['web'] %}
+    server {{ hostvars[backend]['ansible_default_ipv4']["address"] }} {{ hostvars[backend]["ansible_default_ipv4"]["address"] }} check port 80
+    {% endfor %}
     option httpchk HEAD /index.php HTTP/1.0
+
 ```
 
 We have many new things going on here.
 
-First, `{{ ansible_ens2['ipv4']['address'] }}` will be replaced by the IP of the load balancer on eth1.
+First, `{{ ['ansible_default_ipv4']["address"] }}` will be replaced by the IP of the load balancer on eth1.
 
 Then, we have a loop.
 This loop is used to build the backend servers list.
