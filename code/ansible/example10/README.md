@@ -25,6 +25,7 @@ Let's make a `templates/` directory and create a Jinja template inside.
 We'll call  it `haproxy.cfg.j2`.
 We use the `.j2` extension by convention, to make it obvious that this  is a Jinja2 template, but this is not necessary.
 
+{% raw %}
 ```jinja
 global
     daemon
@@ -41,12 +42,12 @@ listen cluster
     mode http
     stats enable
     balance roundrobin
-    {% for backend in groups['web'] %}
-    server {{ hostvars[backend]['ansible_default_ipv4']["address"] }} {{ hostvars[backend]["ansible_default_ipv4"]["address"] }} check port 80
+    {% for backend in groups["web"] %}
+    server {{ hostvars[backend]["ansible_default_ipv4"]["address"] }} {{ hostvars[backend]["ansible_default_ipv4"]["address"] }} check port 80
     {% endfor %}
     option httpchk HEAD /index.php HTTP/1.0
-
 ```
+{% endraw %}
 
 We have many new things going on here.
 
