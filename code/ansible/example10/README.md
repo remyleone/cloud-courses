@@ -17,7 +17,7 @@ When you write Jinja2 templates, you can use any variable defined by Ansible.
 
 For instance, if you want to output the inventory_name of the host the template is currently built for, you just can write `{{ inventory_hostname }}` in the Jinja template.
 
-Or if you need the IP of the first ethernet interface (which ansible knows thanks to the `setup` module), you just write: `{{ ansible_ens2['ipv4']['address'] }}` in your template.
+Or if you need the IP of the first ethernet interface (which ansible knows thanks to the `setup` module), you just write: {% raw %}`{{ ["ansible_default_ipv4"]["address"] }}`{% endraw %} in your template.
 
 Jinja2 templates also support conditionals, for-loops, etc...
 
@@ -51,7 +51,7 @@ listen cluster
 
 We have many new things going on here.
 
-First, `{{ ['ansible_default_ipv4']["address"] }}` will be replaced by the IP of the load balancer on eth1.
+First, {% raw %}`{{ ["ansible_default_ipv4"]["address"] }}`{% endraw %} will be replaced by the IP of the load balancer on eth1.
 
 Then, we have a loop.
 This loop is used to build the backend servers list.
