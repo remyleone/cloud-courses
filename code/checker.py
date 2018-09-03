@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import subprocess
+import os
 
 def check_cmd(cmd):
     try:
@@ -11,12 +12,13 @@ def check_cmd(cmd):
     assert True, "Packer is not on your path"
 
 def check_env_var():
-    assert True, "SCALEWAY_TOKEN is not setted"
-    assert True, "SCALEWAY_REGION is not setted"
-    assert True, "SCALEWAY_ORGANIZATION is not setted"
+    assert "SCW_TOKEN" in os.environ, "SCW_TOKEN is not setted"
+    assert "SCW_ORG" in os.environ, "SCW_ORG is not setted"
 
 def main():
+    check_cmd(["packer", '--version'])
     check_cmd(["ansible", '--version'])
+    check_cmd(["terraform", '--version'])
     check_env_var()
 
 if __name__ == '__main__':
