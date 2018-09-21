@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# odoo installation
-
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 tzdata tzdata/Areas select Europe
 tzdata tzdata/Zones/Europe select Paris
