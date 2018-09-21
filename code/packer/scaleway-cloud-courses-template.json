@@ -7,9 +7,9 @@
     {
       "api_access_key": "{{ user `api_access_key` }}",
       "api_token": "{{ user `api_token` }}",
-      "server_name": "odoo",
-      "image_name": "odoo-image",
-      "snapshot_name": "odoo-snapshot",
+      "server_name": "cloud-courses",
+      "image_name": "cloud-courses-image",
+      "snapshot_name": "cloud-courses-snapshot",
       "type": "scaleway",
       "image": "dec0cdd6-3ef5-47cf-a777-54a21f732b02",
       "region": "par1",
