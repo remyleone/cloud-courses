@@ -40,6 +40,8 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 
 - [Security](security)
 
+- [S3](s3)
+
 ## Projects
 
 - [Projects](projects)

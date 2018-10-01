@@ -1,0 +1,27 @@
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Protocol</key>
+        <string>s3</string>
+        <key>Vendor</key>
+        <string>poc</string>
+        <key>Description</key>
+        <string>s3.nl-ams.scw.cloud</string>
+        <key>Default Hostname</key>
+        <string>s3.nl-ams.scw.cloud</string>
+        <key>Default Port</key>
+        <string>443</string>
+        <key>Username Placeholder</key>
+        <string>Access Key</string>
+        <key>Password Placeholder</key>
+        <string>Secret Key</string>
+        <key>Authorization</key>
+        <string>AWS4HMACSHA256</string>
+        <key>Region</key>
+        <string>nl-ams</string>
+        <key>Regions</key>
+        <array>
+            <string>nl-ams</string>
+        </array>
+    </dict>
+</plist>
