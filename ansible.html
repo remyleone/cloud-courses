@@ -2,9 +2,11 @@
 layout: presentation
 ---
 
+class: center, middle
+
 # Ansible
 
-![Default-aligned image](/img/ansible_logo.png)
+![Default-aligned image](img/ansible_logo.png)
 
 Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
@@ -17,33 +19,49 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 ---
 
+class: center, middle
+
 # How it works?
 
 ---
 
-idempotency
+class: center, middle
+
+# idempotency
 
 ---
 
-agentless
+class: center, middle
+
+# agentless
 
 ---
 
 # Why do I need it?
 
-???
-
-- you would need to recreate from scratch an instance everytime you want to update something
-
----
-
-Inventory
-
-Example with ini
+- You would need to recreate from scratch an instance everytime you want to update something
+- You can to generalize a role
 
 ---
 
-modules
+# Inventory
+
+```ini
+mail.example.com
+
+[webservers]
+foo.example.com
+bar.example.com
+
+[dbservers]
+one.example.com
+two.example.com
+three.example.com
+```
+
+---
+
+# modules
 
 Don't use only the module shell
 
@@ -66,36 +84,55 @@ system: known_host, authorized_key, user, group
 
 - YAML syntax
 
-```
-
+```bash
+- file:
+    path: /etc/some_directory
+    state: directory
+    mode: 0755
 ```
 ---
 
 # playbook
 
+```
+# touch the same file, but add/remove some permissions
+- file:
+    path: /etc/foo.conf
+    state: touch
+    mode: "u+rw,g-wx,o-rwx"
+
+# create a directory if it doesn't exist
+- file:
+    path: /etc/some_directory
+    state: directory
+    mode: 0755
+```
+
 ---
 
 # roles
 
-	ansible-galaxy init mon_role
+```bash
+ansible-galaxy init mon_role
 
-	.
-	├── README.md
-	├── defaults
-	│   └── main.yml
-	├── files
-	├── handlers
-	│   └── main.yml
-	├── meta
-	│   └── main.yml
-	├── tasks
-	│   └── main.yml
-	├── templates
-	├── tests
-	│   ├── inventory
-	│   └── test.yml
-	└── vars
-	    └── main.yml
+.
+├── README.md
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+```
 
 ---
 
@@ -104,16 +141,14 @@ system: known_host, authorized_key, user, group
 Problem:
 - How can I apply a playbook to a set of machines that can change dynamically?
 
-`ansible-playbook -i scaleway_inventory.yml roles/playbook.yml`
+```bash
+ansible-playbook -i scaleway_inventory.yml roles/playbook.yml
+```
 
 ---
 
 # Ansible galaxy
 
 Problem: How to reuse content that is generic through deployment?
-
----
-
-# References
 
 ---
