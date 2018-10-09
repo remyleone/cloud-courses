@@ -8,12 +8,28 @@
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
+      body {
+        font-family: 'Droid Serif';
+        color: white;
+      }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
+      a {
+        color: lightblue;
+      }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content {
+          background-image: url('img/logo.svg'),
+                            url('img/background.png');
+          background-repeat:  no-repeat, repeat-x;
+          background-position: bottom 5px left 5px, center;
+      }
+      .no-bg {
+          background-image: none;
+          color: black
+      }
     </style>
   </head>
   <body>

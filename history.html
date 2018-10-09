@@ -1,0 +1,217 @@
+---
+layout: presentation
+---
+
+class: center, middle
+# Scaleway history
+
+---
+
+# Scaleway history
+
+2001 Online is created to sell dedicated servers
+
+--
+
+2013 Scaleway team is created to offer cloud services
+
+.center[![create server](img/create_server.png)]
+
+???
+Scaleway's goal is to provide a "create server" button: on click, after a few
+seconds, users can connect to the server and host applications.
+It is possible to move an IP address from a server to another, make snapshots
+from volumes, create images to start several servers from the same installation,
+set security groups, ...
+Servers are billed per hour, so infrastructures can scale up and down depending
+on users' needs.
+
+--
+
+2017 Scaleway brand, la Maison, Go Global
+
+.center[![create server](img/lamaison.png)]
+
+???
+On September 2017, we realized it made more sense to gather Online and Scaleway
+services behind the brand Scaleway, and that we needed to recruit engineers to
+extend our teams, develop our products and go worldwide. We moved from Iliad
+headquarters (rue de la Ville l'Évêque, Paris 75008) to "La Maison" in Paris,
+and we opened another "Maison" in Lille.
+
+---
+
+class: center, middle
+# Offers
+
+---
+
+# Offers
+
+- virtualized vs baremetal
+- ARM vs x86
+- Start vs Pro
+
+https://www.scaleway.com/pricing/
+
+---
+
+# Offers
+## 2015: C1
+
+Pimouss hardware
+
+* 4 cores
+* 2Gib RAM
+* 18 C1 servers on a blade
+* Servers don't have hard drives directly connected. They are connected to a
+  NAS, which is a C1 server behind the blade
+* 16 blades in a chassis
+* two uplinks for 16 blades: one 10Gbit/s for compute traffic, and one 1Gbit/s
+for admin traffic
+
+???
+In April 2015, [we announce C1 instances](https://blog.online.net/2015/04/02/from-online-labs-to-scaleway/).
+C1 is the acronym for "Compute 1st (generation)".
+
+C1 are armv7 servers, internally named "Pimouss" (we have a candy name for each
+type of hardware developed by our lab), designed by our hardware lab.
+
+---
+
+# Offers
+## 2016: C2
+
+Home made Suchard Hardware
+
+There are three variants of C2 instances:
+
+* C2S: 4 x86-64 cores, 8GiB RAM, one network interface at 2.5Gbits/s
+* C2M: 8 x86-64 cores, 16GiB RAM, two network interfaces at 2.5Gbits/s
+* C2L: 8 x86-64 cores, 32GiB RAM, two network interfaces at 2.5Gbits/s + one
+ SATA disk of 250Gb.  This disk can be used to store anything but it is zeroed
+ by a worker when the server is stopped, so it should be considered as a
+ temporary disk.
+
+Connected to a (PowerEdge R730xd from Dell). There is one NAS for 6 chassis.
+
+A suchard chassis contains 18 nodes, 9 C2S, 5 C2M and 4 C2L.
+
+???
+In March 2016, [we announce C2 instances](https://blog.online.net/2016/03/08/c2-insanely-affordable-x64-servers/).
+C2 is the acronym for "Compute 2nd generation".
+
+---
+
+# Offers
+## 2016: VPS
+
+Qemu-kvm based
+
+* VC1S: 2 x86-64 cores, 2GB RAM and 50GB SSD
+* VC1M: 4 x86-64 cores, 4GB RAM and 100GB SSD
+* VC1L  6 x86-64 cores, 8GB RAM and 200GB SSD
+
+The host instance is actually a C2L node with a SATA disk of 1To where are
+stored VMs volumes.
+
+???
+In April 2016, we announce [VC1 instances](https://blog.online.net/2016/04/05/vc1-new-affordable-variants/).
+VC1 is the acronym for "Virtual Cloud 1st generation".
+
+The virtual offer is "over provisioned", we put more client that the maximum
+capacity of the host.
+
+As we don't overprovision RAM, the maximum number of client is 60 or 28 on a HV
+(suchard or tagada)
+
+---
+
+# Offers
+## 2017: Workfload intensive
+
+* X64-60GB (internally called VC2L) 10 cores, 60GB of RAM and 700GB of disk
+* X64-120GB (internally called VC2XL) 12 cores, 120GB of RAM and 1To of disk
+
+--
+
+We realize it becomes difficult to understand all our offers, so we decide to
+rename the previous VPS offers:
+
+* VC1S are now also known as X64-2GB
+* VC1M are now also known as X64-4GB
+* VC1L are now also known as X64-8GB
+
+???
+In February 2017, we announce [workload intensive instances](https://blog.online.net/2017/02/07/scaleway-new-cloud-servers-for-intensive-workloads/)
+
+---
+
+# Offers
+## 2017: New variants for workload intensive instances
+
+* X64-15GB (internally named VC2S) 6 cores, 15GB of RAM and 200GB of disk
+* X64-30GB (internally named VC2M) 8 cores, 30GB of RAM and 400GB of disk
+
+The host machine is a Supermicro server with 12 cores, 128GB of RAM and 2 SSD
+disks of 2To
+
+???
+In February 2017, we announce [new variants for workload intensive instances](https://blog.online.net/2017/02/23/workload-intensive-cloud-servers-new-variants/)
+
+---
+
+# Offers
+## 2017: ARMv8
+
+* ARM64-16GB: 16 cores, 16GB of RAM and 400GB of SSD disk
+* ARM64-32GB: 32 cores, 32GB of RAM and 600GB of SSD disk
+* ARM64-64GB: 48 cores, 64GB of RAM and 800GB of SSD disk
+* ARM64-128GB: 64 cores, 128GB of RAM and 1To of SSD disk
+
+It is running on [Cavium servers](https://www.cavium.com/product-thunderx-arm-processors.html),
+which have 96 cores, 256GB of RAM and 3 SATA disks of 1.8To and 1 SATA disk of
+1To.
+
+???
+In June 2018, we announce [ARMv8 instances](https://blog.online.net/2017/06/22/armv8-scaleway-new-high-core-variants/)
+
+---
+
+# Offers
+##  2018: Start family with NVMe disks
+
+* START1-XS (internally named VC3XS) 1 core, 1GB of RAM and 25GB of disk
+* START1-S (internally named VC3S) 2 core, 2GB of RAM and 50GB of disk
+* START1-M (internally named VC3M) 4 core, 4GB of RAM and 100GB of disk
+* START1-L (internally named VC3L) 8 core, 8GB of RAM and 200GB of disk
+
+These instances are run on "tagada" nodes. Tagada is the new server developed by
+our hardware lab, with 16 cores, 64GB of RAM and a NVMe disk of 1To.
+
+--
+
+Tagada nodes are more powerful than C2L instances (where are run VC1
+instances) with 64 GB or RAM.
+New VC1 instances are now provisioned on tagada nodes, and we plan to stop using
+C2L instances for existing servers.
+
+
+???
+In May 2018, we announce [new instances](https://blog.online.net/2018/05/03/introducing-scaleway-nextgen-nvme-cloud-servers-with-hot-snapshots/)
+
+---
+
+# Offers
+## Software
+
+* Many distro supported: Ubuntu, Centos, Archlinux, Fedora, Debian, Alpine
+
+--
+
+* Packaged app: Wordpress, Openvpn, ownCloud, GitLab
+
+--
+
+* Custom image [image tools](https://github.com/scaleway/image-tools) (docker
+  based)

@@ -29,6 +29,7 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 - [Requirements](requirements)
 
 - [Overview](overview)
+- [History](history)
 - [XaaS](xaas)
 
 - [Infrastructure as a Code](iaac)
