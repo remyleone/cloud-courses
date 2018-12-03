@@ -1,0 +1,207 @@
+---
+layout: presentation
+---
+
+# Scaleway
+
+---
+
+# Histoire
+
+- Spin-off de Online
+- Bare-metal ARM (2015)
+- Ouverture à l'international
+- Volonté de fusion autour de la marque Scaleway
+
+---
+
+class: center, middle
+
+# Catalogue
+
+---
+
+# Compute
+
+- Infrastructure as a Service (IaaS)
+- x86 / ARM
+- Virtualized / Baremetal
+
+---
+
+# Betas
+
+https://www.scaleway.com/betas/
+
+- Object Storage
+- Kubernetes as a Service
+- Instances GPU
+
+---
+
+# Open Source
+
+- Encouraged
+- Best Effort
+- Focus on a subset of tools (Ansible, Packer, Terraform)
+
+---
+
+# Internal Open Source
+
+- Best effort maintenance for all tools
+- Internal forge to test integration
+- Ongoing project to have generated CLI/SDK
+
+---
+
+class: center, middle
+
+# Ansible
+
+---
+
+# Modules
+
+https://docs.ansible.com/ansible/devel/modules/list_of_cloud_modules.html#scaleway
+
+---
+
+# `scaleway_compute`
+
+CRUD compute instances
+
+```
+- name: Create a server
+  scaleway_compute:
+    name: foobar
+    state: present
+    image: 9C27D558-0B58-487F-A693-ABD695695328
+    organization: 6FCADDE7-51AD-4B07-94C2-0C51EAB720D3
+    region: par1
+    commercial_type: START1-S
+    wait: true
+
+  register: server_creation_task
+
+```
+
+---
+
+# `scaleway_ip`
+
+CRUD static IP
+
+```
+- name: Create IP
+  scaleway_ip:
+    state: present
+    region: par1
+    organization: 9C1E6027-B102-4D3A-850E-FF71448D4FBB
+  register: ip_creation_task
+```
+
+---
+
+# `scaleway_volume`
+
+CRUD external volumes
+
+```
+- name: Create volume
+  scaleway_volume:
+    name: ansible-test-volume
+    state: present
+    region: par1
+    organization: 9C1E6027-B102-4D3A-850E-FF71448D4FBB
+    size: 10000000000
+    volume_type: l_ssd
+```
+
+---
+
+# `scaleway_X_facts`
+
+```
+- scaleway_server_facts:
+    region: par1
+```
+
+---
+
+# Ansible Dynamic Inventory Plugin
+
+```
+plugin: scaleway
+```
+
+Example:
+
+```
+ansible-inventory -i scw.yml --list
+```
+
+[Reference](https://docs.ansible.com/ansible/devel/plugins/inventory/scaleway.html)
+
+---
+
+class: center, middle
+
+# Packer
+
+https://www.packer.io/docs/builders/scaleway.html
+
+---
+
+# Terraform
+
+[https://github.com/terraform-providers/terraform-provider-scaleway](https://github.com/terraform-providers/terraform-provider-scaleway)
+
+---
+
+
+# `scaleway_server`
+
+```
+resource "scaleway_server" "test" {
+    name  = "test"
+    image = "5faef9cd-ea9b-4a63-9171-9e26bec03dbc"
+    type  = "START1-S"
+}
+```
+
+---
+
+# `scaleway_bucket`
+
+```
+resource "scaleway_bucket" "test" {
+    name = "sample-bucket"
+}
+```
+
+---
+
+# `scaleway_ip`
+
+```
+resource "scaleway_ip" "test_ip" {}
+```
+
+---
+
+# `scaleway_volume`
+
+```
+resource "scaleway_volume" "test" {
+    name       = "test"
+    size_in_gb = 50
+    type       = "l_ssd"
+}
+```
+
+---
+
+# Questions ?
+
+---
