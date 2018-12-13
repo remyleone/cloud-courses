@@ -1,0 +1,13 @@
+[Unit]
+Description=demo_node.js
+After=network.target
+
+[Service]
+Environment=NODE_PORT=3001
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/node /home/user/src/app.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

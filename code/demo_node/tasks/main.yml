@@ -1,0 +1,21 @@
+---
+
+- name: Install an nginx
+  apt:
+    name: nginx
+    update_cache: yes
+    state: present
+
+- name: Install build-essentials
+  apt:
+    name: build-essential
+    state: present
+
+- name: Get node install scripts
+  get_url:
+    url: https://deb.nodesource.com/setup_11.x
+    dest: /tmp/setup_11.x
+    mode: 0500
+
+- name: Run script
+  script: /tmp/setup_11.x

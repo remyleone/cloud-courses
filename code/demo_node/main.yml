@@ -1,0 +1,64 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Install system-wide packages
+      apt:
+        name: 
+          - nginx
+          - apt-transport-https
+        update_cache: yes
+        state: present
+
+    - name: Install the gpg key for nodejs LTS
+      apt_key:
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+
+    - name: Install the nodejs LTS repos
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_11.x xenial main"
+        state: present
+        update_cache: yes
+
+    - name: Install node
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Add the user 'user'
+      user:
+        name: user
+
+    - name: Copy all sources
+      copy:
+        src: src/
+        dest: /home/user/src/
+        owner: user
+        group: user
+
+    - name: Copy the service file
+      copy:
+        src: templates/demo_node.service
+        dest: /lib/systemd/system/demo_node.service
+    
+    - name: Enable the systemctl
+      systemd:
+        name: demo_node.service
+        state: started
+        enabled: yes
+
+    - name: Copy the reverse proxy file
+      copy: 
+        src: templates/demo_config.nginx
+        dest: /etc/nginx/sites-available/demo_config
+
+    - file:
+        src: /etc/nginx/sites-available/demo_config
+        dest: /etc/nginx/sites-enabled/default
+        state: link
+      
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+  
