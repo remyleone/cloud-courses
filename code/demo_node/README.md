@@ -1,38 +1,36 @@
-Role Name
-=========
+# Demo Scaleway + Nodejs
 
-A brief description of the role goes here.
+## Getting started with Vagrant and Virtual box
 
-Requirements
-------------
+https://www.vagrantup.com/
+https://www.virtualbox.org/
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- `vagrant up`
+- `vagrant ssh`
 
-Role Variables
---------------
+## Setup credentials
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- Create an SSH key and add it to your account: https://www.scaleway.com/docs/configure-new-ssh-key/
+- Create a new token https://www.scaleway.com/docs/generate-an-api-token/
+- Add it to your environment:
 
-Dependencies
-------------
+    ```
+    export SCW_ACCESS_KEY="SCWXXX"
+    export SCW_TOKEN="bc88fc55-XXX"
+    export SCALEWAY_TOKEN=$SCW_TOKEN
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+    export SCW_ORGANIZATION="951df375-XXXX"
+    export SCW_ORG=$SCW_ORGANIZATION
+    ```
 
-Example Playbook
-----------------
+# Create the infrastructure
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+- `terraform init`
+- `terraform plan`
+- `terraform apply`
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+# Provision them
 
-License
--------
+- `ansible-inventory -i inventory.yml --list`
+- `ansible-playbook -i inventory.yml main.yml`
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
