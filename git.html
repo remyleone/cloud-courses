@@ -1,0 +1,195 @@
+---
+layout: presentation
+---
+
+class: center, middle
+
+# Git workshop @ Scaleway
+
+---
+
+class: center, middle
+
+# git by itself
+
+---
+
+class: center, middle
+
+
+# git in team
+
+---
+
+#  Before we start
+
+---
+
+class: center, middle
+
+```
+$ git --version
+git version 2.20.1
+```
+
+---
+
+# Clients
+
+- [tig](https://jonas.github.io/tig/)
+- [Fork](https://git-fork.com/)
+
+Choose your own: https://git-scm.com/download/gui/mac
+
+# Config
+
+`.gitconfig` (Shiny colors, aliases, options, ...)
+
+---
+
+class: center, middle
+
+# git by itself 
+
+---
+
+# What does git solve?
+
+- Distributed Social Coding
+- Snapshots of your code (Version control)
+- Try out new idea easily (Branches)
+
+Reference: http://tom.preston-werner.com/2009/05/19/the-git-parable.html
+
+---
+
+# What does git help to solve?
+
+- Continuous Integration
+- Agile Workflow
+- Open Source
+
+---
+
+# Cheat sheet
+
+http://ndpsoftware.com/git-cheatsheet.html
+
+---
+
+# How does it work on your computer?
+
+- git persists its state in .git/
+- all commands interacts with those files
+- If this folder is gone, so is your history
+
+---
+
+# Visualizing
+
+http://git-school.github.io/visualizing-git/
+
+---
+
+# Visualizing Git branching
+
+https://learngitbranching.js.org/
+
+---
+
+# Tips and tricks
+
+- https://github.com/git-tips/tips
+- `git help` / `git help --all` / `git help --guide` / `git help glossary`
+
+# I've messed up and I don't know what to do
+
+- https://github.com/k88hudson/git-flight-rules
+
+
+---
+
+# General best practices on git
+
+- Know your commits. It is your work, your craft.
+- Don't commit everything you are modifying `-p` is your friend 
+- Write meaningful commit messages (Easier to understand during peer reviews)
+
+---
+
+class: center, middle
+
+# git with your team 
+
+---
+
+class: center, middle
+
+# Workflow
+
+---
+
+class: center, middle
+
+# Many choices
+
+(git does not care)
+
+---
+
+# github style
+
+- master can be deployed. Always.
+- Developper fork your project
+- 1 feature per branch
+- People open merge request if they want to get something merged
+- feature is merged when reviewed, tested and accepted
+- Other rebase if needed. That's your job to keep track with master.
+
+
+References: Git for teams (Available upon request)
+
+---
+
+# Who makes the call to merge something?
+
+- 100% dependent of the project
+- Usually two +1 to get something merged
+
+---
+
+# How can I stay up to date with upstream changes?
+
+- Merge or rebase strategy
+http://gitforteams.com/resources/merge-rebase.html
+
+- My favorite is rebase (Easier to read on the commit DAG)
+
+---
+
+# Eyes on the road
+
+- git blame
+- git log / your client visualization
+- git reflog to see everything that happened on your local repository
+
+---
+
+# Reviews
+
+- Automated gatekeeper
+- Peer review
+
+---
+
+# General best practices on distributed development
+
+- One change per commits (No little changes on the side!)
+- Small commits that can be reviewed easily
+- Add tests to your code that are launched automatically
+- Published history should not be altered. Don't do that.
+
+---
+
+class: center, middle
+# Questions?
