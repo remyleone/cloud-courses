@@ -1,0 +1,27 @@
+{
+  "builders": [
+    {
+      "organization_id": "{{ user `organization_id` }}",
+      "api_token": "{{ user `api_token` }}",
+      "server_name": "cloud-courses",
+      "image_name": "cloud-courses-image",
+      "snapshot_name": "cloud-courses-snapshot",
+      "type": "scaleway",
+      "image": "dec0cdd6-3ef5-47cf-a777-54a21f732b02",
+      "region": "par1",
+      "commercial_type": "START1-S",
+      "ssh_private_key_file": "/Users/sieben/.ssh/id_rsa",
+      "ssh_username": "root"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "ubuntu_install.sh"
+    },
+    {
+      "type": "shell",
+      "inline": ["sync"]
+    }
+  ]
+}

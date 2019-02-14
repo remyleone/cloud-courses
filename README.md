@@ -28,20 +28,17 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 
 - [Requirements](requirements)
 
-- [Overview](overview)
-- [History](history)
-- [XaaS](xaas)
+- [Overview](overview/overview)
+- [History](overview/history)
+- [XaaS](overview/xaas)
 
-- [Infrastructure as a Code](iaac)
+- [Infrastructure as a Code](overview/iaac)
   - [Ansible](ansible)
   - [Terraform](terraform)
   - [Packer](packer)
 
-- [Patterns](patterns)
 
-- [Security](security)
-
-- [S3](s3)
+- [object-storage](object-storage)
 
 ## Projects
 
