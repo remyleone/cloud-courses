@@ -48,7 +48,7 @@ source ./hacking/env-setup
 
 ```bash
 git clone https://github.com/scaleway/cloud-courses
-cd code/ansible
+cd ansible
 ```
 
 ## Contents
