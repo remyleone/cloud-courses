@@ -2,5 +2,6 @@ url: https://scaleway.github.io/cloud-courses
 title: cloud-courses by Scaleway
 author: Rémy Léone
 exclude: [".vagrant", ".terraform"]
+repository: scaleway/cloud-courses
 plugins:
   - jekyll-sitemap
