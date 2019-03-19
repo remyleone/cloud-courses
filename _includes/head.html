@@ -3,14 +3,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="google-site-verification" content="h1pjTHoAMTrAcR263VC1llO4fTVO17oUxwyd_7o_0rE" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel=icon type=image/png sizes=32x32 href='{{ "/assets/img/icons/favicon-32x32.png" | relative_link }}'>
+  <link rel=icon type=image/png sizes=32x32 href='{{ "/assets/img/icons/favicon-32x32.png" | absolute_url }}'>
 
   {% assign title = page.title | default: site.title | escape %}
   {% assign canonical = page.url | replace:'index.html','' | absolute_url %}
   {% assign description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | escape %}
   <title>{{ title }}</title>
 
-  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | absolute_url }}">
 
   {% include fonts.html %}
 </head>
