@@ -1,4 +1,5 @@
-url: https://scaleway.github.io/cloud-courses
+url: https://scaleway.github.io
+baseurl: /cloud-courses
 title: cloud-courses by Scaleway
 author: Rémy Léone
 exclude: [".vagrant", ".terraform"]
