@@ -21,8 +21,8 @@
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
       .remark-slide-content {
-          background-image: url('{{ "/assets/img/logo.svg" | relative_link }}'),
-                            url('{{ "/assets/img/background.png" | relative_link }}');
+          background-image: url('{{ "/assets/img/logo.svg" | absolute_url }}'),
+                            url('{{ "/assets/img/background.png" | absolute_url }}');
           background-repeat:  no-repeat, repeat-x;
           background-position: bottom 5px left 5px, center;
       }
@@ -31,12 +31,13 @@
           color: black
       }
     </style>
+  <link rel=icon type=image/png sizes=32x32 href='{{ "/assets/img/icons/favicon-32x32.png" | absolute_url }}'>
   </head>
   <body>
     <textarea id="source">
 {{ content }}
     </textarea>
-  <script src='{{ "/assets/js/remark-latest.min.js" | relative_link }}' type="text/javascript">
+  <script src='{{ "/assets/js/remark-latest.min.js" | absolute_url }}' type="text/javascript">
     </script>
     <script type="text/javascript">
       remark.macros.scale = function (percentage) {
