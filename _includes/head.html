@@ -8,7 +8,7 @@
   {% assign description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | escape %}
   <title>{{ title }}</title>
 
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
 
   {% include fonts.html %}
 </head>
