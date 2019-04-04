@@ -7,10 +7,10 @@
       "image_name": "cloud-courses-image",
       "snapshot_name": "cloud-courses-snapshot",
       "type": "scaleway",
-      "image": "dec0cdd6-3ef5-47cf-a777-54a21f732b02",
-      "region": "par1",
+      "image": "{{ user `image` }}",
+      "region": "ams1",
       "commercial_type": "START1-S",
-      "ssh_private_key_file": "/Users/sieben/.ssh/id_rsa",
+      "ssh_private_key_file": "{{ user `ssh_private` }}",
       "ssh_username": "root"
     }
   ],
@@ -23,5 +23,11 @@
       "type": "shell",
       "inline": ["sync"]
     }
-  ]
+  ],
+  "variables": {
+    "organization_id": "{{env `SCW_ORG`}}",
+    "api_token": "{{env `SCW_TOKEN`}}",
+    "image": "9444d178-2285-4842-ac35-5e86eda8da91",
+    "ssh_private": "{{env `HOME`}}/.ssh/id_rsa"
+  }
 }
