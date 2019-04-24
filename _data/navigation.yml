@@ -2,4 +2,4 @@
 # pages in order as they should show up.
 main:
   - title: "GitHub"
-    url: https://github.com/scaleway/cloud-courses
+    url: https://github.com/remyleone/cloud-courses

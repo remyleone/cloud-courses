@@ -47,7 +47,7 @@ source ./hacking/env-setup
 # Cloning the tutorial
 
 ```bash
-git clone https://github.com/scaleway/cloud-courses
+git clone https://github.com/remyleone/cloud-courses
 cd ansible
 ```
 

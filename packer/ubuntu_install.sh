@@ -45,5 +45,4 @@ python3 -m pip install ansible
 
 # Install the courses content
 
-git clone https://github.com/scaleway/cloud-courses
-
+git clone https://github.com/remyleone/cloud-courses
