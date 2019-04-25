@@ -1,8 +1,8 @@
-url: https://scaleway.github.io
+url: https://www.sieben.fr
 baseurl: /cloud-courses
-title: cloud-courses by Scaleway
+title: cloud-courses
 author: Rémy Léone
 exclude: [".vagrant", ".terraform"]
-repository: scaleway/cloud-courses
+repository: remyleone/cloud-courses
 plugins:
   - jekyll-sitemap
