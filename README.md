@@ -45,6 +45,7 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 
 ## Cloud native technologies
 
+- [git](git)
 - [object-storage](object-storage)
 - [load-balancer](load-balancer)
 - [database](database)
