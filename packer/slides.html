@@ -16,7 +16,9 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 - How can I create a cloud image that is production ready?
 
-  `packer build my-template.json`
+```bash
+packer build my-template.json
+```
 
 ---
 
@@ -29,12 +31,13 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 
 ---
 
-class: center, middle
-
 # Demo
 
 ```bash
-packer build -var "api_access_key=$SCW_ACCESS_KEY"
-             -var "api_token=$SCW_TOKEN"
-             scaleway-odoo-template.json
+packer build scaleway-cloud-courses-template.json
 ```
+
+---
+
+class: center, middle
+# Questions?
