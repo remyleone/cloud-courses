@@ -40,7 +40,9 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 
 - [object-storage](object-storage)
 
-## Projects
+## Student Projects
+
+Projects are the best way to get started about cloud computing!
 
 - [Projects](projects)
 
