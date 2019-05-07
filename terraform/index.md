@@ -29,3 +29,10 @@ Before running any of those examples, check that you are setted up.
 | Resource import                | [example13](example13) |
 | Workspace                      | [example14](example14) |
 | Counters, index and depends_on | [example15](example15) |
+
+## Check if Terraform is installed
+
+```bash
+$ terraform version
+Terraform v0.11.8-dev
+```

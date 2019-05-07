@@ -24,21 +24,32 @@ As a teacher I can help avoid loosing time searching on faulty knowledge path.
 * Fundamentals of cloud computing: distributed architecture, resource pooling, Service Oriented Architecture
 * Cloud services: (IaaS, PaaS, SaaS, XaaS)
 
-## Outline
+## Cloud computing
 
-- [Requirements](requirements)
-
-- [Overview](overview/overview)
-- [History](overview/history)
+- [Overview](overview/slides)
 - [XaaS](overview/xaas)
+- [References](overview/links)
 
-- [Infrastructure as a Code](overview/iaac)
+## Scaleway
+
+- [Overview](scaleway/overview)
+- [History](scaleway/history)
+- [Products](scaleway/products)
+
+## Infrastructure as code
+
+- [Introduction to Infrastructure as a Code](overview/iaac)
   - [Ansible](ansible)
   - [Terraform](terraform)
   - [Packer](packer)
 
+## Cloud native technologies
 
 - [object-storage](object-storage)
+- [load-balancer](load-balancer)
+- [database](database)
+- [registry](registry)
+- [kubernetes](kubernetes)
 
 ## Student Projects
 

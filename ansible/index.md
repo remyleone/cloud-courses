@@ -84,3 +84,15 @@ Just in case you want to skip to a specific step, here is a topic table of conte
 - [10. Templates](example10)
 - [11. Variables again](example11)
 - [12. Migrating to roles](example12)
+
+## Check to see if Ansible is installed?
+
+```
+$ ansible --version
+ansible 2.7.0.dev0 (devel 6b6c017dd1) last updated 2018/07/04 15:57:15 (GMT +200)
+  config file = None
+  configured module search path = [u'/Users/sieben/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /Users/sieben/workspace/ansible/lib/ansible
+  executable location = /Users/sieben/workspace/ansible/bin/ansible
+  python version = 2.7.15 (default, Jun 17 2018, 12:46:58) [GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.2)]
+```

@@ -22,31 +22,21 @@ output "ipv4" {
 }
 
 data "template_file" "dev_hosts" {
+  template = "${file("hosts.template")}"
 
-   template = "${file("hosts.template")}"
+  depends_on = ["scaleway_server.ansible_tuto"]
 
-   depends_on = ["scaleway_server.ansible_tuto"]
-
-
-     vars {
-       api_public = "${aws_instance.dev-api-gateway.private_ip}"
-
-     }
-
+  vars {
+    api_public = "${aws_instance.dev-api-gateway.private_ip}"
+  }
 }
 
 resource "null_resource" "dev-hosts" {
+  triggers {
+    template_rendered = "${ data.template_file.dev_hosts.rendered }"
+  }
 
-   triggers {
-
-      template_rendered = "${ data.template_file.dev_hosts.rendered }"
-
-   }
-
-provisioner "local-exec" {
-
-  command = "echo '${ data.template_file.dev_hosts.rendered }' > dev_hosts"
-
-}
-
+  provisioner "local-exec" {
+    command = "echo '${ data.template_file.dev_hosts.rendered }' > dev_hosts"
+  }
 }

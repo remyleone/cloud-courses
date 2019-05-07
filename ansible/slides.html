@@ -65,18 +65,18 @@ three.example.com
 
 Don't use only the module shell
 
-Cloud: Scaleway, Amazon, Cloudstack, Openstack, VMWare, Digital Ocean
-Clustering: Consul, zookeeper
-Commands: Shell, script, expect
-Database: mysql, postgresql, redis, riak
-Files: copy, fetch, lineinfile, template, unarchive
-Messaging: rabbitmq_[binding, exchange, queue, ...]
-Monitoring: zabbix, nagios, sensu, monit
-Network: A10, F5, Openswitch, cumulus, get_url
-Notification: Jabber, slack, mail, irc, hipchat
-Packaging: apt, yum, pip, bower, npm, homebrew
-Source control: git, gitlab, hg, subversion
-system: known_host, authorized_key, user, group
+- **Cloud:** Scaleway, Amazon, Cloudstack, Openstack, VMWare, Digital Ocean
+- **Clustering:** Consul, zookeeper
+- **Commands:** Shell, script, expect
+- **Database:** mysql, postgresql, redis, riak
+- **Files:** copy, fetch, lineinfile, template, unarchive
+- **Messaging:** rabbitmq_[binding, exchange, queue, ...]
+- **Monitoring:** zabbix, nagios, sensu, monit
+- **Network:** A10, F5, Openswitch, cumulus, get_url
+- **Notification:** Jabber, slack, mail, irc, hipchat
+- **Packaging:** apt, yum, pip, bower, npm, homebrew
+- **Source control:** git, gitlab, hg, subversion
+- **system:** known_host, authorized_key, user, group
 
 ---
 
@@ -84,7 +84,7 @@ system: known_host, authorized_key, user, group
 
 - YAML syntax
 
-```bash
+```yaml
 - file:
     path: /etc/some_directory
     state: directory
@@ -94,7 +94,7 @@ system: known_host, authorized_key, user, group
 
 # playbook
 
-```
+```yaml
 # touch the same file, but add/remove some permissions
 - file:
     path: /etc/foo.conf
@@ -152,3 +152,6 @@ ansible-playbook -i scaleway_inventory.yml roles/playbook.yml
 Problem: How to reuse content that is generic through deployment?
 
 ---
+
+class: center, middle
+# Questions?
