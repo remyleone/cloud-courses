@@ -1,0 +1,125 @@
+---
+layout: presentation
+---
+
+class: center, middle
+# Infrastructure as code support @ Scaleway
+
+---
+
+# `whoami`
+
+- Rémy Léone
+- Cloud Developer Advocate @Scaleway
+- Maintainer of most Scaleway Ansible modules / plugins
+
+---
+
+# How things are usually done without IaaC
+
+- Infrastructure were usually managed by tickets/manual instantiation
+- Infrastructure churn was considered low
+- Manual / Semi-automated installation
+
+---
+
+# ad-hoc management problems
+
+- Not scalable
+- No elasticity
+- Non reproducible infrastructure
+- No single source of truth about what the infrastructure is. 
+    - So it is hard to recreate a copy for a pre-prod for instance
+
+---
+
+# Solution: Infrastructure as code
+
+- Code that define infrastructure
+- Uses tools to make the desired state match the declared state
+    - Declarative paradigm
+    - Idempotency as a by-results
+- Files can be versionned and replayed
+    - Single source of truth
+    - Classical git workflow
+- Infrastructure can be re-created
+    - Reproducibility of the infastructure
+---
+
+# Terraform
+
+```hcl
+provider "scaleway" {
+    region = "par1"
+}
+
+data "scaleway_image" "example03" {
+    architecture = "x86_64"
+    name         = "Ubuntu Bionic"
+}
+
+resource "scaleway_server" "example03" {
+    name  = "example03"
+    image = "${data.scaleway_image.example03.id}"
+    type  = "START1-S"
+}
+```
+
+- Tool from Hashicorp
+- Resources description
+- Diff-based operation: Local state (tfstate)  / Remote state in S3
+
+---
+
+# Ansible
+
+```yaml
+scaleway_compute:
+    name: My server
+    state: present
+    image: 00000000-1111-2222-3333-111111111111
+    organization: 00000000-1111-2222-3333-111111111111
+    region: fr-par-1
+    commercial_type: gp1-s
+    wait: true
+```
+
+- Agent-less
+- Sequential
+
+???
+
+- Direct SSH connetion 
+
+---
+
+# Other advantages
+
+- Easier to grasp the infrastructure and contribute to it
+- Align incentives between developer and operational to have a single source of truth that both can review and apply
+- Easier to test a complete deployment using CI/CD
+- Pet / Cattle paradigm
+- Not cloud-agnostic but similar patterns
+- Security
+
+???
+
+- You can sign code in git like any code. Everything can be automated
+
+---
+
+# Next step: Containerization
+
+- Immutable infrastructure (Image built)
+    - Packer / Ansible
+    - Dockerfile
+- Kubernetes
+    - Declarative paradigm
+    - Container based
+
+???
+
+---
+
+class: center, middle
+# Questions?
