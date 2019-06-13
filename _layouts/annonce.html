@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Infrastructure as code chez Scaleway</title>
+
+        <link rel="stylesheet" href='{{ "/assets/css/reset.css" | absolute_url }}'>
+        <link rel="stylesheet" href='{{ "/assets/css/reveal.css" | absolute_url }}'>
+        <link rel="stylesheet" href='{{ "/assets/css/theme/scaleday.css" | absolute_url }}'>
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href='{{ "/assets/css/scaleway.css" | absolute_url }}'>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%">
+                    <h2>Kubernetes docs localization</h2>
+                    <p>Kubernetes in 🇫🇷</p>
+                </section>
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background-speaker.jpg" | absolute_url }}'  
+                                            data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'  data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%">
+                    <img class="speaker-picture" src='{{ "/assets/img/me.png" | absolute_url }}'/>
+                    <p class="speaker-name" >Rémy Léone</p>
+                    <p class="speaker-job">Cloud Developer Advocate</p>
+                    <p class="speaker-job">Kickstarted k8s docs French translation</p>
+                </section>
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                data-background-size="10% 10%, cover" 
+                 data-background-position="4% 100%, 50% 50%"
+                data-markdown>
+            <textarea data-template>
+                # What this project is about?
+        
+            </textarea>
+        </section>
+        
+        
+        
+        <section data-background-transition="fade" 
+        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+        data-background-size="10% 10%, cover" 
+         data-background-position="4% 100%, 50% 50%"
+        data-markdown>
+    <textarea data-template>
+        ### Translating Kubernetes documentation
+
+        - I will be working on the French translation
+        - English, Chinese, Japanese, Korean, Italian, Spanish, French, German, Portuguese, Hindi, Indonesian
+        - I can help you bootstrap your own too.
+    </textarea>
+</section>
+
+
+
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+data-background-size="10% 10%, cover" 
+ data-background-position="4% 100%, 50% 50%"
+data-markdown>
+<textarea data-template>
+### Why should I care?
+
+- Increase visibility of the documentation
+- It matters: Millions of views!! 
+
+</textarea>
+</section>
+
+
+
+
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+data-background-size="10% 10%, cover" 
+ data-background-position="4% 100%, 50% 50%"
+data-markdown>
+<textarea data-template>
+### What do I need?
+
+- Speak English and another language
+- `git` knowledge is appreciated but not mandatory
+
+</textarea>
+</section>
+
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+data-background-size="10% 10%, cover" 
+ data-background-position="4% 100%, 50% 50%"
+data-markdown>
+<textarea data-template>
+# Thanks!
+
+</textarea>
+</section>
+
+
+
+
+		<script src='{{ "/assets/js/reveal.js" | absolute_url }}'></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: '{{ "/assets/js/plugin/markdown/marked.js" | absolute_url }}' },
+					{ src: '{{ "/assets/js/plugin/markdown/markdown.js" | absolute_url }}' },
+					{ src: '{{ "/assets/js/plugin/notes/notes.js" | absolute_url }}', async: true },
+					{ src: '{{ "/assets/js/plugin/highlight/highlight.js" | absolute_url }}', async: true }
+				]
+            });
+            
+            // Slide number formatting can be configured using these variables:
+            //  "h.v": 	horizontal . vertical slide number (default)
+            //  "h/v": 	horizontal / vertical slide number
+            //    "c": 	flattened slide number
+            //  "c/t": 	flattened slide number / total slides
+            Reveal.configure({ slideNumber: 'c/t' });
+
+		</script>
+	</body>
+</html>

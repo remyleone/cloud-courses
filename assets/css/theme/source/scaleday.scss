@@ -1,0 +1,146 @@
+/**
+ * Black theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/muli/muli.css);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #5F32D3;
+
+$mainFont: 'Muli';
+$linkColor: #FC6A65;
+$linkColorHover: lighten( $linkColor, 20% );
+$headingFont: 'Muli';
+$headingTextShadow: none;
+$headingLetterSpacing: -0.03em;
+$headingTextTransform: none;
+$selectionBackgroundColor: #e7ad52;
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Scaleway colors
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #FC6A65;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+
+//body {
+//	background: $backgroundColor;
+//    background-image: url('../../../img/logo.svg');
+//    background-repeat: no-repeat;
+//    background-position: 1% 100%;
+//    background-size: 10% 10%;
+//}
+
+.reveal .slide-number {
+    font-size: !important 110%;
+}
+
+.reveal section img {
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+.icon {
+    width: 20%;
+}
+
+.kapsule {
+    width: 30%;
+    float: left;
+}
+
+
+.speaker-picture {
+    width: 25%;
+    border-radius: 35%;
+    float: left;
+//    padding-left: 10%;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+.speaker-name {
+    font-weight: 900;
+    font-size: 150%;
+    text-align: left;
+    text-indent:10%;
+}
+
+.speaker-job {
+    font-size: 80%;
+    font-style: italic;
+    text-align: left;
+    text-indent:10%;
+}
+
+.conference-name {
+    font-size: 110%;
+    text-align: left;
+    text-indent:10%;
+    display: block;
+    padding: 50px;
+}
+
+.qr-code {
+    width: 30%;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+.reveal h2 {
+    font-weight: 900;
+//    float: left;
+//    padding-left: 10%;
+}
+
+.reveal h1 {
+    font-weight: 900;
+}
+
+.reveal pre {
+    clear: both;
+    width: 80%;
+}
+
+.multiCol {
+    display: table;
+    table-layout: fixed; // don't fudge depending on content
+    width: 100%;
+    text-align: left; // matter of taste, makes imho sense
+    .col {
+        display: table-cell;
+        vertical-align: top;
+        width: 50%;
+        padding: 2% 0 2% 3%; // some vertical, and between columns
+        &:first-of-type { padding-left: 0; } // there's nothing before col1
+    }
+}

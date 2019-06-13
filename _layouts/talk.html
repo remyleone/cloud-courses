@@ -1,0 +1,605 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Infrastructure as code chez Scaleway</title>
+
+        <link rel="stylesheet" href='{{ "/assets/css/reset.css" | absolute_url }}'>
+        <link rel="stylesheet" href='{{ "/assets/css/reveal.css" | absolute_url }}'>
+        <link rel="stylesheet" href='{{ "/assets/css/theme/scaleday.css" | absolute_url }}'>
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href='{{ "/assets/css/scaleway.css" | absolute_url }}'>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "/assets/css/print/pdf.css" | absolute_url }}' : '{{ "/assets/css/print/paper.css" | absolute_url }}';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%">
+                    <h2>Infrastructure as code chez Scaleway</h2>
+                    <p>Comment gérer ses ressources avec Ansible, Packer et Terraform ?</p>
+                </section>
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background-speaker.jpg" | absolute_url }}'  
+                                            data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'  data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%">
+                    <img class="speaker-picture" src='{{ "/assets/img/me.png" | absolute_url }}'/>
+                    <p class="speaker-name" >Rémy Léone</p>
+                    <p class="speaker-job">Cloud Developer Advocate</p>
+                    <p class="speaker-job">Scaleway Ansible modules maintainer</p>
+                </section>
+
+                <section data-background-transition="fade" data-background-size="10% 10%, cover" 
+                data-background-position="4% 100%, 50% 50%" data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'  data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}' data-markdown>
+                    <textarea data-template>
+                        ### How things are usually done without IaC?
+                
+                        - Infrastructure were usually managed by tickets/manual instantiation
+                        - Infrastructure churn was considered low
+                        - Manual / Semi-automated installation
+                    </textarea>
+                </section>
+                                
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### ad-hoc management problems
+                
+                        - Not scalable
+                        - No elasticity
+                        - Non reproducible infrastructure
+                        - No single source of truth about what the infrastructure is. 
+                            - So it is hard to recreate a copy for a pre-prod for instance
+                    </textarea>
+                </section>
+                
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Hypothesis
+                
+                        - Churn is supposed to be slow
+                        - Standard tools are not available and widespread
+                        - Ops are required to provide additional work anyway
+                    </textarea>
+                </section>
+                
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                data-background-size="10% 10%, cover" 
+                 data-background-position="4% 100%, 50% 50%"
+                data-markdown>
+            <textarea data-template>
+                ### Why is it different today?
+        
+                - Churn is increasing as project rise and fall
+                - Standard tools are available and widespread
+                - Ops are required to provide different work today
+            </textarea>
+        </section>
+        
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-size="10% 10%, cover" 
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ## Solution: Infrastructure as code
+                
+                    </textarea>
+                </section>                
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-size="10% 10%, cover" 
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### What is it?
+                
+                        Code that define infrastructure
+                    </textarea>
+                </section>            
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-size="10% 10%, cover" 
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Paradigm shift
+                
+                        - Uses tools to make the desired state match the declared state
+                            - Declarative paradigm
+                            - Idempotency as a by-results
+                    </textarea>
+                </section>            
+
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-size="10% 10%, cover" 
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Why use code?
+                
+                        - Files can be versionned and replayed
+                            - Single source of truth
+                            - Classical git workflow
+                        - Infrastructure can be re-created
+                            - Reproducibility of the infastructure
+                    </textarea>
+                </section>            
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                data-background-size="10% 10%, cover" 
+                 data-background-position="4% 100%, 50% 50%"
+                data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'                       data-markdown>
+            <textarea data-template>
+                ## How do I convince my management this is important?
+        
+            </textarea>
+        </section>
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                data-background-size="10% 10%, cover" 
+                 data-background-position="4% 100%, 50% 50%"
+                data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'                       data-markdown>
+            <textarea data-template>
+                ### Easier to grasp the infrastructure and contribute to it
+
+                Reduce the risk to have only a single person able to do a task
+            </textarea>
+        </section>
+
+
+        <section data-background-transition="fade" 
+        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+        data-background-size="10% 10%, cover" 
+         data-background-position="4% 100%, 50% 50%"
+        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'                       data-markdown>
+    <textarea data-template>
+
+        ### Align incentives between Dev and Ops
+        
+        - Single source of truth that both can review and apply 
+        - Lower the risk of misunderstanding between dev and ops
+    </textarea>
+</section>
+
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-size="10% 10%, cover" 
+ data-background-position="4% 100%, 50% 50%"
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'                       data-markdown>
+<textarea data-template>
+
+### Easier to test a complete deployment using CI/CD
+
+ Lower the risk of breaking change
+</textarea>
+</section>
+
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-size="10% 10%, cover" 
+ data-background-position="4% 100%, 50% 50%"
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'                       data-markdown>
+<textarea data-template>
+
+### Pet / Cattle paradigm 
+
+Lower the risk on a single machine
+</textarea>
+</section>
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+data-background-size="10% 10%, cover" 
+data-background-position="4% 100%, 50% 50%"
+data-markdown>
+<textarea data-template>
+# Which tools can I use?
+</textarea>
+</section>
+
+
+        <section data-background-transition="fade" 
+        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+        data-background-size="10% 10%, cover" 
+        data-background-position="4% 100%, 50% 50%"
+        data-markdown>
+    <textarea data-template>
+        # Terraform
+    </textarea>
+</section>
+
+<section data-background-transition="fade" 
+data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+data-background-size="10% 10%, cover" 
+ data-background-position="4% 100%, 50% 50%"
+data-markdown>
+<textarea data-template>
+    ### Terraform
+
+    ![Terraform logo]({{ "/assets/img/terraform_logo.png" | absolute_url }})
+
+    - Tool from Hashicorp
+    - Resources description
+    - Diff-based operation: Local state (tfstate)  / Remote state in S3
+</textarea>
+</section>
+
+                <section data-background-transition="fade" 
+                data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                data-background-size="10% 10%, cover" 
+                data-background-position="4% 100%, 50% 50%"
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-markdown>
+                    <textarea data-template>
+                        ### Terraform
+                
+```
+provider "scaleway" {
+    region = "par1"
+}
+
+data "scaleway_image" "my_image" {
+    architecture = "x86_64"
+    name         = "Ubuntu Bionic"
+}
+
+resource "scaleway_server" "my_server" {
+    name  = "my_server"
+    image = "${data.scaleway_image.my_image.id}"
+    type  = "gp1-s"
+}
+```
+                    </textarea>
+                </section>
+                
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Scaleway ressources for Terraform
+                        
+                        - `scaleway_bucket`
+                        - `scaleway_ip`
+                        - `scaleway_security_group`
+                        - `scaleway_security_group_rule`
+                        - `scaleway_server`
+                        - `scaleway_ssh_key`
+                        - `scaleway_token`
+                        - `scaleway_user_data`
+                        - `scaleway_volume`
+                        - `scaleway_volume_attachment`
+       
+                    </textarea>
+                </section>
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Scaleway data sources for Terraform
+                        
+                        - `scaleway_bootscript`
+                        - `scaleway_image`
+                        - `scaleway_security_group`
+                        - `scaleway_volume`
+       
+                    </textarea>
+                </section>
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        # Ansible
+                    </textarea>
+                </section>
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Ansible
+
+                        <img src='{{ "/assets/img/ansible-logo.png" | absolute_url }}' width="200" height="200" />
+                                           
+                        - Agent-less
+                        - Sequential workflow
+                        - Large community
+                        - Many roles
+                        - Many modules
+                    </textarea>
+                </section>
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                ### Ansible
+                
+```yaml
+scaleway_compute:
+    name: My server
+    state: present
+    image: 00000000-1111-2222-3333-111111111111
+    organization: 00000000-1111-2222-3333-111111111111
+    region: fr-par-1
+    commercial_type: gp1-s
+    wait: true
+```
+                    </textarea>
+                </section>
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Ansible modules for Scaleway
+                        
+                        - `scaleway_compute`
+                        - `scaleway_ip`
+                        - `scaleway_lb`
+                        - `scaleway_security_group_rule`
+                        - `scaleway_sshkey`
+                        - `scaleway_user_data`
+                        - `scaleway_volume`
+        
+                    </textarea>
+                </section>
+
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                        data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Ansible modules for Scaleway facts
+                        
+                        - `scaleway_image_facts`
+                        - `scaleway_ip_facts`
+                        - `scaleway_organization_facts`
+                        - `scaleway_security_group_facts`
+                        - `scaleway_server_facts`
+                        - `scaleway_snapshot_facts`
+                        - `scaleway_volume_facts`
+        
+                    </textarea>
+                </section>
+
+
+                <section data-background-transition="fade" 
+                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                data-background-size="10% 10%, cover" 
+                data-background-position="4% 100%, 50% 50%"
+                data-markdown>
+            <textarea data-template>
+                # Packer
+            </textarea>
+        </section>
+        
+        <section data-background-transition="fade" 
+        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+        data-background-size="10% 10%, cover" 
+         data-background-position="4% 100%, 50% 50%"
+        data-markdown>
+        <textarea data-template>
+            ### Terraform
+        
+            ![Terraform logo]({{ "/assets/img/packer_logo.png" | absolute_url }})
+        
+            - Tool from Hashicorp
+            - JSON format
+            - Create an image from builder / provisionner
+        </textarea>
+        </section>
+        
+                        <section data-background-transition="fade" 
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%"
+                                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                                data-markdown>
+                            <textarea data-template>
+
+```json
+{
+  "builders": [
+     {
+        "type": "scaleway",
+        "region": "ams1",
+        "commercial_type": "gp1-xs",
+        "organization_id": "XXXX",
+        "api_token": "XXXX",
+        "image_name": "cloud-courses-image",
+        "image": "XXXX",
+        "ssh_private_key_file": "~/.ssh/id_rsa",
+        "ssh_username": "root"
+    }
+],
+...
+}
+```
+                            </textarea>
+                        </section>
+        
+
+
+                        <section data-background-transition="fade" 
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%"
+                                data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                                data-markdown>
+                            <textarea data-template>
+
+```json
+{
+    ...
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "ubuntu_install.sh"
+        },
+        {
+            "type": "ansible",
+            "inline": ["my_playboo.yml"]
+        }
+    ]
+}
+```
+                            </textarea>
+                        </section>
+        
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ## Conclusion
+                    </textarea>
+                </section>
+
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        - Paradigm shift from imperative to declarative
+                        - Same tooling that developers (git, editors, ...)
+                        - Single Source of truth, code review workflow, ...
+                        - Scaleway is compatible with Ansible, Terraform
+                    </textarea>
+                </section>
+
+                
+                <section data-background-transition="fade" 
+                        data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                        data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}' 
+                        data-background-size="10% 10%, cover" 
+                        data-background-position="4% 100%, 50% 50%"
+                        data-markdown>
+                    <textarea data-template>
+                        ### Next step: Containerization
+                
+                        - Immutable infrastructure (Image built)
+                            - Packer / Ansible
+                            - Dockerfile
+                        - Kubernetes
+                            - Declarative paradigm
+                            - Container based        
+                    </textarea>
+                </section>
+                
+                <section data-background-transition="fade" 
+                data-background-size="10% 10%, cover" 
+                         data-background-position="4% 100%, 50% 50%"
+                         data-background-logo='{{ "/assets/img/logo.svg" | absolute_url }}'   
+                         data-background-image='{{ "/assets/img/background.jpg" | absolute_url }}'
+                         >
+                    <h1>Thanks!</h1>
+                    <p>Follow our news, new tutorials and cloud infos on<br />
+                    <a href="https://twitter.com/scaleway">Twitter</a> and <a href="https://www.linkedin.com/company/scaleway/">LinkedIn</a> @Scaleway</p>
+                    <p>and follow me on <a href="https://twitter.com/remyleone">Twitter</a> & <a href="https://www.linkedin.com/in/remyleone">LinkedIn</a>  @remyleone</p>
+                    <img src='{{ "/assets/img/qr-code-scaleday.png" | absolute_url }}' width="200" height="200"/>
+                    
+                </section>
+
+                <section data-background-transition="fade" data-background-image='{{ "/assets/img//background-thanks.jpg" | absolute_url }}'>
+                </section>
+			</div>
+		</div>
+
+		<script src='{{ "/assets/js/reveal.js" | absolute_url }}'></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: '{{ "/assets/js/plugin/markdown/marked.js" | absolute_url }}' },
+					{ src: '{{ "/assets/js/plugin/markdown/markdown.js" | absolute_url }}' },
+					{ src: '{{ "/assets/js/plugin/notes/notes.js" | absolute_url }}', async: true },
+					{ src: '{{ "/assets/js/plugin/highlight/highlight.js" | absolute_url }}', async: true }
+				]
+            });
+            
+            // Slide number formatting can be configured using these variables:
+            //  "h.v": 	horizontal . vertical slide number (default)
+            //  "h/v": 	horizontal / vertical slide number
+            //    "c": 	flattened slide number
+            //  "c/t": 	flattened slide number / total slides
+            Reveal.configure({ slideNumber: 'c/t' });
+
+		</script>
+	</body>
+</html>
