@@ -25,10 +25,6 @@ data "template_file" "dev_hosts" {
   template = "${file("hosts.template")}"
 
   depends_on = ["scaleway_server.ansible_tuto"]
-
-  vars {
-    api_public = "${aws_instance.dev-api-gateway.private_ip}"
-  }
 }
 
 resource "null_resource" "dev-hosts" {
