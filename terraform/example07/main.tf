@@ -21,14 +21,14 @@ data "scaleway_image" "ams" {
 resource "scaleway_server" "example07_par" {
   name  = "example07-paris"
   image = "${data.scaleway_image.par.id}"
-  type  = "C2S"
+  type  = "DEV1-S"
   state = "stopped"
 }
 
 resource "scaleway_server" "example07_ams" {
   name     = "example07-amsterdam"
   image    = "${data.scaleway_image.ams.id}"
-  type     = "C2S"
+  type     = "DEV1-S"
   state    = "stopped"
   provider = "scaleway.amsterdam"
 }
