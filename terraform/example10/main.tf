@@ -4,13 +4,13 @@ provider "scaleway" {
 
 module "dev" {
   source        = "./web_app"
-  instance_type = "START1-S"
+  instance_type = "DEV1-S"
   prefix        = "dev"
 }
 
 module "prod" {
   source        = "./web_app"
-  instance_type = "C2S"
+  instance_type = "DEV1-S"
   prefix        = "prod"
 }
 
