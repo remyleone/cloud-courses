@@ -1,2 +1,1 @@
-instance_type = "START1-S"
-state = "running"
+instance_type = "DEV1-S"

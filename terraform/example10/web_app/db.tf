@@ -1,11 +1,11 @@
-data "scaleway_image" "example10_db" {
-  architecture = "x86_64"
-  name         = "Ubuntu Bionic"
+data "scaleway_marketplace_image" "example10_db" {
+  instance_type = "DEV1-S"
+  label         = "ubuntu_focal"
 }
 
-resource "scaleway_server" "example10_db" {
+
+resource "scaleway_instance_server" "example10_db" {
   name  = "${var.prefix}-example10_db"
-  image = "${data.scaleway_image.example10_db.id}"
-  type  = "${var.instance_type}"
-  state = "running"
+  image = data.scaleway_marketplace_image.example10_db.id
+  type  = var.instance_type
 }

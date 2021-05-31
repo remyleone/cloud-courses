@@ -13,6 +13,6 @@ Example using [import](https://www.terraform.io/docs/import/index.html).
 ## How to use?
 
     terraform init
-    terraform import scaleway_server.example13 381dddff-78c2-417e-8561-bed30ca2fd4b
+    terraform import scaleway_instance_server.example13 381dddff-78c2-417e-8561-bed30ca2fd4b
     terraform plan
     terraform apply

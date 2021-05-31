@@ -1,21 +1,24 @@
+terraform {
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.1.0"
+    }
+  }
+}
+
 provider "scaleway" {
-  region = "par1"
+  region = "fr-par"
 }
 
-data "scaleway_image" "example14" {
-  architecture = "x86_64"
-  name         = "Ubuntu Bionic"
-}
-
-resource "scaleway_server" "example14" {
-  name                = "example14-${terraform.workspace}"
-  image               = "${data.scaleway_image.example14.id}"
-  type                = "START1-S"
-  state               = "running"
-  enable_ipv6         = true
-  dynamic_ip_required = true
+resource "scaleway_instance_server" "example14" {
+  name              = "example14-${terraform.workspace}"
+  image             = "ubuntu_focal"
+  type              = "DEV1-S"
+  enable_ipv6       = true
+  enable_dynamic_ip = true
 }
 
 output "instance_ip" {
-  value = "${scaleway_server.example14.public_ip}"
+  value = scaleway_instance_server.example14.public_ip
 }

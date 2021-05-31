@@ -1,5 +1,5 @@
 provider "scaleway" {
-  region = "par1"
+  region = "fr-par"
 }
 
 data "scaleway_image" "ansible_tuto" {
@@ -7,10 +7,10 @@ data "scaleway_image" "ansible_tuto" {
   name         = "Ubuntu Bionic"
 }
 
-resource "scaleway_server" "ansible_tuto" {
+resource "scaleway_instance_server" "ansible_tuto" {
   name                = "ansible_tuto-${count.index}"
   image               = "${data.scaleway_image.ansible_tuto.id}"
-  type                = "START1-S"
+  type                = "DEV1-S"
   state               = "running"
   enable_ipv6         = true
   dynamic_ip_required = true
