@@ -1,5 +1,5 @@
-resource "scaleway_server" "example09" {
+resource "scaleway_instance_server" "example09" {
   name  = "example09"
-  image = "27452e61-310e-4fe5-93af-0a0bdf4c20a6"
-  type  = "START1-S"
+  image = "ff48b73a-097d-4685-b996-d3ebe50636ea"
+  type  = "DEV1-S"
 }

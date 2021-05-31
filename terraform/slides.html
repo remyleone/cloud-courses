@@ -53,7 +53,7 @@ Contact: [rleone@scaleway.com](mailto:rleone@scaleway.com)
 ---
 
 ```
-resource "scaleway_server" "test" {
+resource "scaleway_instance_server" "test" {
   name  = "test"
   image = "aecaed73-51a5-4439-a127-6d8229847145"
   type  = "C2S"
@@ -62,7 +62,7 @@ resource "scaleway_server" "test" {
 
 
 ```
-"${scaleway_server.test.image}"
+"${scaleway_instance_server.test.image}"
 ```
 
 ???
@@ -178,10 +178,10 @@ Apply is a multi-stage command
 Problem: I already got infrastructure that is defined.
 How can I manage it with terraform?
 
-`$ terraform import scaleway_server.foobar 7b8f6ad6-f26b-4ffa-8464-e27fe22d40d4`
+`$ terraform import scaleway_instance_server.foobar 7b8f6ad6-f26b-4ffa-8464-e27fe22d40d4`
 
 ```
-resource "scaleway_server" "foobar" {
+resource "scaleway_instance_server" "foobar" {
   name  = "foobar"
   image = "857de28c-39ce-4b15-9389-b68d8bb1bb51"
   type  = "VC1S"

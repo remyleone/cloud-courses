@@ -1,20 +1,33 @@
+terraform {
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.1.0"
+    }
+  }
+}
+
 provider "scaleway" {
-  region = "par1"
+  region = "fr-par"
 }
 
-data "scaleway_image" "example11" {
-  architecture = "x86_64"
-  name         = "Ubuntu Bionic"
+data "scaleway_marketplace_image" "example11" {
+  instance_type = "DEV1-S"
+  label         = "ubuntu_focal"
 }
 
-resource "scaleway_server" "example11" {
+resource "scaleway_instance_volume" "vol" {
+  size_in_gb = 20
+  type       = "b_ssd"
+}
+
+resource "scaleway_instance_server" "example11" {
   name  = "example11"
-  image = "${data.scaleway_image.example11.id}"
-  type  = "START1-S"
+  image = data.scaleway_marketplace_image.example11.id
+  type  = "DEV1-S"
   state = "stopped"
 
-  volume {
-    size_in_gb = 20
-    type       = "l_ssd"
-  }
+  additional_volume_ids = [
+    scaleway_instance_volume.vol.id
+  ]
 }

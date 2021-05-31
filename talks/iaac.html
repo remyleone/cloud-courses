@@ -50,7 +50,7 @@ class: center, middle
 
 ```hcl
 provider "scaleway" {
-    region = "par1"
+    region = "fr-par"
 }
 
 data "scaleway_image" "example03" {
@@ -58,10 +58,10 @@ data "scaleway_image" "example03" {
     name         = "Ubuntu Bionic"
 }
 
-resource "scaleway_server" "example03" {
+resource "scaleway_instance_server" "example03" {
     name  = "example03"
     image = "${data.scaleway_image.example03.id}"
-    type  = "START1-S"
+    type  = "DEV1-S"
 }
 ```
 

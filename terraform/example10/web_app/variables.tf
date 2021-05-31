@@ -3,6 +3,6 @@ variable "instance_type" {
 }
 
 variable "prefix" {
-  type        = "string"
+  type        = string
   description = "Prefix of all instance name"
 }

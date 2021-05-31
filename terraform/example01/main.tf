@@ -1,9 +1,18 @@
-provider "scaleway" {
-  region = "par1"
+terraform {
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.1.0"
+    }
+  }
 }
 
-resource "scaleway_server" "example01" {
+provider "scaleway" {
+  region = "fr-par"
+}
+
+resource "scaleway_instance_server" "example01" {
   name  = "example01"
-  image = "27452e61-310e-4fe5-93af-0a0bdf4c20a6"
-  type  = "START1-S"
+  image = "ff48b73a-097d-4685-b996-d3ebe50636ea"
+  type  = "DEV1-S"
 }

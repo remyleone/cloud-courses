@@ -1,35 +1,39 @@
+terraform {
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.1.0"
+    }
+  }
+}
+
 provider "scaleway" {
-  region = "par1"
+  region = "fr-par"
 }
 
-data "scaleway_image" "example06" {
-  architecture = "x86_64"
-  name         = "Ubuntu Bionic"
+data "scaleway_marketplace_image" "example06" {
+  instance_type = "DEV1-S"
+  label         = "ubuntu_focal"
 }
 
-resource "scaleway_server" "example06" {
-  name                = "example06"
-  image               = "${data.scaleway_image.example06.id}"
-  type                = "START1-S"
-  state               = "running"
-  enable_ipv6         = true
-  dynamic_ip_required = true
+resource "scaleway_instance_server" "example06" {
+  name              = "example06"
+  image             = data.scaleway_marketplace_image.example06.id
+  type              = "DEV1-S"
+  enable_ipv6       = true
+  enable_dynamic_ip = true
+
+  cloud_init = data.template_file.cloud_init_script.rendered
 }
 
 data "template_file" "cloud_init_script" {
-  template = "${file("cloud-init.yml")}"
+  template = file("cloud-init.yml")
 
-  vars {
+  vars = {
     msg = "Groovy Baby"
   }
 }
 
-resource "scaleway_user_data" "cloud-init" {
-  server = "${scaleway_server.example06.id}"
-  key    = "cloud-init"
-  value  = "${data.template_file.cloud_init_script.rendered}"
-}
-
 output "ipv4" {
-  value = "${scaleway_server.example06.public_ip}"
+  value = scaleway_instance_server.example06.public_ip
 }

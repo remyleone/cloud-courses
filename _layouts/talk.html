@@ -278,7 +278,7 @@ data-markdown>
                 
 ```
 provider "scaleway" {
-    region = "par1"
+    region = "fr-par"
 }
 
 data "scaleway_image" "my_image" {
@@ -286,7 +286,7 @@ data "scaleway_image" "my_image" {
     name         = "Ubuntu Bionic"
 }
 
-resource "scaleway_server" "my_server" {
+resource "scaleway_instance_server" "my_server" {
     name  = "my_server"
     image = "${data.scaleway_image.my_image.id}"
     type  = "gp1-s"

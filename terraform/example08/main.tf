@@ -1,14 +1,24 @@
-provider "scaleway" {
-  region = "par1"
+terraform {
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.1.0"
+    }
+  }
 }
 
-data "scaleway_image" "example08" {
-  architecture = "x86_64"
-  name         = "Ubuntu Bionic"
+provider "scaleway" {
+  region = "fr-par"
+}
+
+data "scaleway_marketplace_image" "example08" {
+  instance_type = "DEV1-S"
+  label         = "ubuntu_focal"
+  zone          = "fr-par-1"
 }
 
 variable "tag_list" {
-  type = "list"
+  type = list(string)
 
   default = [
     "foo",
@@ -24,10 +34,10 @@ variable "state" {
   default = "stopped"
 }
 
-resource "scaleway_server" "example08" {
-  name  = "${var.name}"
-  tags  = "${var.tag_list}"
-  type  = "${var.instance_type}"
-  state = "${var.state}"
-  image = "${data.scaleway_image.example08.id}"
+resource "scaleway_instance_server" "example08" {
+  name  = var.name
+  tags  = var.tag_list
+  type  = var.instance_type
+  state = var.state
+  image = data.scaleway_marketplace_image.example08.id
 }
